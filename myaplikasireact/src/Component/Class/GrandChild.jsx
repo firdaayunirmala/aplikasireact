@@ -8,7 +8,6 @@ class GrandChild extends Component {
         }
     }
 
-
     render() {
         return (
             <div>
