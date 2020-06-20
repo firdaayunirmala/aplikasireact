@@ -4,7 +4,9 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import NavbarComp from './Component/Fungsional/NavbarComp';
 import HomePage from './Component/Fungsional/HomePage';
 import AboutComp from './Component/Fungsional/AboutComp';
-import DetailComp from './Component/Fungsional/DetailComp';
+import ListComp from './Component/Class/ListComp';
+import TambahComp from './Component/Class/TambahComp';
+//import DetailComp from './Component/Fungsional/DetailComp';
 
 //import BootstrapComp from './Component/Class/BootstrapComp';
 //import Kursus from './Component/Class/state';
@@ -22,7 +24,10 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/about" component={AboutComp} />
-        <Route exact path="/detail/:id" component={DetailComp}/>
+        <Route exact path="/mahasiswa" component={ListComp}/>
+        <Route exact path="/mahasiswa/tambah" component={TambahComp}/>
+
+        {/*<Route exact path="/detail/:id" component={DetailComp}/>*/}
       </Switch>
     </BrowserRouter>
   );
