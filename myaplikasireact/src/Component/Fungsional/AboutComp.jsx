@@ -1,11 +1,11 @@
 import React from 'react'
 import { Jumbotron, Button } from 'reactstrap';
 
-function HomePage(props) {
-    return (
-        <div>
-           <Jumbotron>
-        <h1 className="display-3">Halaman Beranda</h1>
+function AboutComp() {
+  return (
+    <div>
+      <Jumbotron>
+        <h1 className="display-3">Tentang Kami</h1>
         <p className="lead">This is a simple hero unit, a simple Jumbotron-style component for calling extra attention to featured content or information.</p>
         <hr className="my-2" />
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
@@ -13,9 +13,8 @@ function HomePage(props) {
           <Button color="primary">Learn More</Button>
         </p>
       </Jumbotron>
-        </div>
-
-    )
+    </div>
+  )
 }
 
-export default HomePage;
+export default AboutComp;

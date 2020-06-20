@@ -1,5 +1,12 @@
 import React from 'react';
-import BootstrapComp from './Component/Class/BootstrapComp';
+
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import NavbarComp from './Component/Fungsional/NavbarComp';
+import HomePage from './Component/Fungsional/HomePage';
+import AboutComp from './Component/Fungsional/AboutComp';
+
+
+//import BootstrapComp from './Component/Class/BootstrapComp';
 //import Kursus from './Component/Class/state';
 //import Parent from './Component/Class/Parent';
 //import logo from './logo.svg';
@@ -8,11 +15,15 @@ import BootstrapComp from './Component/Class/BootstrapComp';
 //import './App.css';
 //import Hitung from './Component/Class/state';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <BootstrapComp />
-    </div>
+    <BrowserRouter>
+    <NavbarComp />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/about" component={AboutComp} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
