@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 //import qs from 'querystring'
 import { Table, Container, Button, NavLink } from 'reactstrap'
-
+import {Link} from 'react-router-dom'
 
 const api = 'http://localhost:3002'
 
@@ -17,7 +17,7 @@ class ListComp extends Component {
     }
 
     componentDidMount() {
-        axios.get(api+'/tampil').then(res =>{
+        axios.get(api + '/tampil').then(res => {
             this.setState({
                 mahasiswa: res.data.values
             })
@@ -26,33 +26,50 @@ class ListComp extends Component {
 
     render() {
         return (
-                <Container>
-                    <h2>Data Mahasiswa</h2>
-                    <NavLink href="/mahasiswa/tambah"><Button color="blue">Tambah Data</Button></NavLink>
-                    <Table className="table-bordered">
-                        <thead>
-                            <tr>
-                                <th>NIM</th>
-                                <th>Nama</th>
-                                <th>Jurusan</th>
-                                <th>Tindakan</th>
-                            </tr>
-                        </thead>
+            <Container>
+                <h2>Data Mahasiswa</h2>
+                <NavLink href="/mahasiswa/tambah"><Button color="blue">Tambah Data</Button></NavLink>
+                <Table className="table-bordered">
+                    <thead>
+                        <tr>
+                            <th>NIM</th>
+                            <th>Nama</th>
+                            <th>Jurusan</th>
+                            <th>Tindakan</th>
+                        </tr>
+                    </thead>
 
-                        <tbody>
+                    <tbody>
                         {this.state.mahasiswa.map(mahasiswa =>
                             <tr key={mahasiswa.id_mahasiswa}>
-                           <td>{mahasiswa.nim}</td>
-                           <td>{mahasiswa.nama}</td>
-                           <td>{mahasiswa.jurusan}</td>
-                            <td>Ubah| Hapus </td>
+                                <td>{mahasiswa.nim}</td>
+                                <td>{mahasiswa.nama}</td>
+                                <td>{mahasiswa.jurusan}</td>
+                                <td>
+                                    <Link to={
+                                        {
+                                            pathname: `/mahasiswa/edit`,
+                                            state: {
+                                                id_mahasiswa: mahasiswa.id_mahasiswa,
+                                                nim: mahasiswa.nim,
+                                                nama: mahasiswa.nama,
+                                                jurusan: mahasiswa.jurusan
+                                            }
+                                        }
+                                    }>
+                                        <Button>Ubah</Button>
+                                    </Link>
+
+
+
+                                </td>
                             </tr>
-                            )}
-                        </tbody>
+                        )}
+                    </tbody>
 
 
-                    </Table>
-                </Container>
+                </Table>
+            </Container>
         )
     }
 }
