@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-//import qs from 'querystring'
-import { Table, Container, Button, NavLink } from 'reactstrap'
-import {Link} from 'react-router-dom'
+import qs from 'querystring'
+import { Table, Container, Button, NavLink, Alert } from 'reactstrap'
+import { Link } from 'react-router-dom'
 
 const api = 'http://localhost:3002'
 
@@ -24,10 +24,44 @@ class ListComp extends Component {
         })
     }
 
+    Deletemahasiswa = (idmahasiswa) => {
+        const { mahasiswa } = this.state
+        const data = qs.stringify({
+            id_mahasiswa: idmahasiswa
+        })
+
+        axios.delete(api + '/hapus',
+            {
+                data: data,
+                headers: { 'Content-type': 'application/x-www-form-urlencoded' }
+            }
+        ).then(json => {
+            if (json.data.status === 200) {
+                this.setState({
+                    response: json.data.values,
+                    mahasiswa: mahasiswa.filter(mahasiswa => mahasiswa.id_mahasiswa !== idmahasiswa),
+                    display: 'block'
+                })
+               
+            }
+            else {
+                this.setState({
+                    response: json.data.values,
+                    display: 'block'
+                })
+               
+            }
+        })
+    }
+
     render() {
         return (
             <Container>
                 <h2>Data Mahasiswa</h2>
+                <Alert color="succes" style={{display: this.state.display}}>
+                    {this.state.response}
+                </Alert>
+
                 <NavLink href="/mahasiswa/tambah"><Button color="blue">Tambah Data</Button></NavLink>
                 <Table className="table-bordered">
                     <thead>
@@ -58,16 +92,14 @@ class ListComp extends Component {
                                         }
                                     }>
                                         <Button>Ubah</Button>
+                                       
                                     </Link>
-
-
-
+                                    <span> || </span>
+                                    <Button onClick={() =>this.Deletemahasiswa(mahasiswa.id_mahasiswa)} color="danger">Hapus</Button>
                                 </td>
                             </tr>
                         )}
                     </tbody>
-
-
                 </Table>
             </Container>
         )
