@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NavbarComp from './Component/Fungsional/NavbarComp';
@@ -10,6 +10,8 @@ import EditComp from './Component/Class/EditComp';
 import KelasComp from './Component/Hooks/Class/KelasComp';
 import HooksComp from './Component/Hooks/Functional/HooksComp';
 import HooksUseEffect from './Component/Hooks/Functional/HooksUseEffects';
+import { CartContext } from './CartContext';
+import ProductComp from './Component/Fungsional/ProductComp';
 //import DetailComp from './Component/Fungsional/DetailComp';
 
 //import BootstrapComp from './Component/Class/BootstrapComp';
@@ -22,8 +24,12 @@ import HooksUseEffect from './Component/Hooks/Functional/HooksUseEffects';
 //import Hitung from './Component/Class/state';
 
 const App = () => {
+
+  const[value, setValue] = useState(10)
+  
   return (
     <BrowserRouter>
+    <CartContext.Provider value={{value, setValue}}>
       <NavbarComp />
       <Switch>
         <Route exact path="/" component={HomePage} />
@@ -34,10 +40,11 @@ const App = () => {
         <Route exact path="/kelas" component={KelasComp} />
         <Route exact path="/hooks" component={HooksComp} />
         <Route exact path="/useeffects" component={HooksUseEffect} />
-
+        <Route exact path="/produk" component={ProductComp} />
 
         {/*<Route exact path="/detail/:id" component={DetailComp}/>*/}
       </Switch>
+      </CartContext.Provider>
     </BrowserRouter>
   );
 }

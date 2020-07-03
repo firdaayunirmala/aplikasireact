@@ -1,47 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    NavbarText
+    Collapse,Navbar,NavbarToggler,NavbarBrand,Nav,NavItem,NavbarText,Button
 } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
+import { CartContext } from '../../CartContext';
+
 
 const NavbarComp = (props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
 
+    const { value} = useContext(CartContext)
+
     return (
         <div>
             <Navbar color="light" light expand="md">
-                <NavbarBrand href="">Selamat Datang</NavbarBrand>
+                <NavbarBrand to="">Selamat Datang</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <NavLink href="/">Beranda</NavLink>
+                            <NavLink to="/" className="nav-link">Beranda</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/about">Tentang</NavLink>
+                            <NavLink to="/about"  className="nav-link" >Tentang</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/mahasiswa">Mahasiswa</NavLink>
+                            <NavLink to="/mahasiswa"  className="nav-link" >Mahasiswa</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/kelas">Cek Kelas</NavLink>
+                            <NavLink to="/kelas" className="nav-link" >Cek Kelas</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/hooks">Hooks</NavLink>
+                            <NavLink to="/hooks" className="nav-link">Hooks</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/useEffects">Use Effects</NavLink>
+                            <NavLink to="/useEffects" className="nav-link">Use Effects</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink to="/produk" className="nav-link">Produk</NavLink>
                         </NavItem>
                     </Nav>
-                    <NavbarText>Keluar</NavbarText>
+
+                    <NavbarText>
+                        <Button color="danger">
+                            <i className="fa fa-shopping-cart"></i>
+                            <span className="badge badge-light">{value}</span>
+                        </Button>
+                    </NavbarText>
+
                 </Collapse>
             </Navbar>
         </div>
