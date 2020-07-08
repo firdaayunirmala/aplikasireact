@@ -9,15 +9,14 @@ var ip = require('ip');
 //controller untuk register
 exports.registrasi = function(req,res) {
     var post = {
+        nama: req.body.nama,
         username: req.body.username,
-        email: req.body.email,
         password: md5(req.body.password),
         role: req.body.role,
-        tanggal_daftar: new Date()
     }
 
-    var query = "SELECT email FROM ?? WHERE ??=?";
-    var table = ["user", "email", post.email];
+    var query = "SELECT nama FROM ?? WHERE ??=?";
+    var table = ["user", "nama", post.nama];
 
     query = mysql.format(query,table);
 
@@ -37,7 +36,7 @@ exports.registrasi = function(req,res) {
                     }
                 });
             }else {
-                response.ok("Email sudah terdaftar!",res);
+                response.ok("Username sudah terdaftar!",res);
             }
         }
     })
@@ -46,12 +45,12 @@ exports.registrasi = function(req,res) {
 // controller untuk login
 exports.login = function(req,res){
     var post = {
-        password: req.body.password,
-        email: req.body.email
+        nama: req.body.nama,
+        password: req.body.password
     }
 
     var query = "SELECT * FROM ?? WHERE ??=? AND ??=?";
-    var table = ["user", "password", md5(post.password), "email", post.email];
+    var table = ["user", "nama", post.nama, "password", md5(post.password)];
 
     query = mysql.format(query,table);
     
@@ -69,7 +68,6 @@ exports.login = function(req,res){
                 var data = {
                     id_user: id_user,
                     access_token: token,
-                    ip_address: ip.address()
                 }
 
                 var query = "INSERT INTO ?? SET ?";
@@ -90,7 +88,7 @@ exports.login = function(req,res){
                 });
             }
             else {
-                res.json({"Error": true, "Message":"Email atau password salah!"});
+                res.json({"Error": true, "Message":"Nama atau password salah!"});
             }
         }
     });

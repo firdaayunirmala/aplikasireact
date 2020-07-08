@@ -8,8 +8,8 @@ exports.index = function (req, res) {
 };
 
 //menampilkan semua data mahasiswa
-exports.tampilsemuamahasiswa = function (req, res) {
-    connection.query('SELECT * FROM mahasiswa', function (error, rows, fileds) {
+exports.tampilsemuapelanggan = function (req, res) {
+    connection.query('SELECT * FROM pelanggan', function (error, rows, fileds) {
         if (error) {
             console.log(error);
         } else {
