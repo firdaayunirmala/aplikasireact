@@ -1,7 +1,5 @@
 import React, { useState, useContext } from 'react';
-import {
-    Collapse,Navbar,NavbarToggler,NavbarBrand,Nav,NavItem,NavbarText,Button
-} from 'reactstrap';
+import {Collapse,Navbar,NavbarToggler,Nav,NavItem,NavbarText,Button} from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import { CartContext } from '../../CartContext';
 
@@ -12,11 +10,11 @@ const NavbarComp = (props) => {
     const toggle = () => setIsOpen(!isOpen);
 
     const { value} = useContext(CartContext)
-
+ 
     return (
         <div>
             <Navbar color="light" light expand="md">
-                <NavbarBrand to="">Selamat Datang</NavbarBrand>
+              
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
@@ -24,13 +22,7 @@ const NavbarComp = (props) => {
                             <NavLink to="/" className="nav-link">Beranda</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink to="/about"  className="nav-link" >Tentang</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink to="/mahasiswa"  className="nav-link" >Mahasiswa</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink to="/kelas" className="nav-link" >Cek Kelas</NavLink>
+                            <NavLink to="/paket"  className="nav-link" >Paket Salon</NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink to="/hooks" className="nav-link">Hooks</NavLink>
