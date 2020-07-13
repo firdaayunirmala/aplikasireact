@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Container, Col, Row, Form, FormGroup, Label, Input, Button, Alert} from 'reactstrap'
-//import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const api = 'http://localhost:3002'
 
@@ -10,9 +10,9 @@ class TambahComp extends Component {
         super(props)
 
         this.state = {
-            nim: '',
             nama: '',
-            jurusan: '',
+            harga: '',
+            gambar: '',
             response: '',
             display:'none'
         }
@@ -22,13 +22,20 @@ class TambahComp extends Component {
         this.setState ({[e.target.name] : e.target.value})
     }
  
-    Addmahasiswa = () => {
+    AddPaket = () => {
         axios.post(api+'/tambah', {
-            nim: this.state.nim,
-            nama: this.state.nama,
-            jurusan: this.state.jurusan
+            nama_paket: this.state.nama,
+            harga_paket: this.state.harga,
+            gambar: this.state.gambar
+
         }).then(json => {
             if(json.data.status === 200) {
+                this.setState ({
+                    response: json.data.values,
+                    display: 'block'
+                })
+            }
+            else {
                 this.setState ({
                     response: json.data.values,
                     display: 'block'
@@ -41,23 +48,14 @@ class TambahComp extends Component {
     render() {
         return (
             <Container>
-                <h4>Formulir Tambah Data</h4>
-                <Alert color="succes" style={{display: this.state.display}}>
+                <h4>Tambah Data</h4>
+                <Alert color="info" style={{display: this.state.display}}>
                     {this.state.response}
                 </Alert>
 
                 <Form className="from">
                     <Col>
-                        <Label>NIM</Label>
-                        <FormGroup>
-                            <Row>
-                                <Col>
-                                    <Input type="text" name="nim" value={this.state.nim} onChange={this.handleChange} placeholder="Masukan NIM" />
-                                </Col>
-                            </Row>
-                        </FormGroup>
-
-                        <Label>NAMA</Label>
+                        <Label>Nama </Label>
                         <FormGroup>
                             <Row>
                                 <Col>
@@ -66,11 +64,20 @@ class TambahComp extends Component {
                             </Row>
                         </FormGroup>
 
-                        <Label>JURUSAN</Label>
+                        <Label>Harga</Label>
                         <FormGroup>
                             <Row>
                                 <Col>
-                                    <Input type="text" name="jurusan" value={this.state.jurusan} onChange={this.handleChange} placeholder="Masukan Jurusan" />
+                                    <Input type="text" name="harga" value={this.state.harga} onChange={this.handleChange} placeholder="Masukan Harga" />
+                                </Col>
+                            </Row>
+                        </FormGroup>
+
+                        <Label>Gambar</Label>
+                        <FormGroup>
+                            <Row>
+                                <Col>
+                                    <Input type="text" name="gambar" value={this.state.gambar} onChange={this.handleChange} placeholder="Masukan Gambar" />
                                 </Col>
                             </Row>
                         </FormGroup>
@@ -78,13 +85,11 @@ class TambahComp extends Component {
                         <FormGroup>
                             <Row>
                                 <Col>
-                                    <Button type="button" onClick={this.Addmahasiswa}>Simpan</Button>
+                                    <Button color="info" type="button" onClick={this.AddPaket}>Simpan</Button> { }
+                                    <Link to="/useeffects" Button type="button" >Kembali</Link>
                                 </Col>
                             </Row>
                         </FormGroup>
-
-
-
                     </Col>
 
                 </Form>

@@ -34,10 +34,10 @@ const NavbarComp = (props) => {
                                     <DropdownMenu >
                                         <DropdownItem >
                                         <NavLink to="/paketrambut" className="nav-link" >Paket Perawatan Rambut</NavLink>
-                </DropdownItem>
+                                     </DropdownItem>
                                         <DropdownItem>
                                         <NavLink to="/paketkaki" className="nav-link" >Paket Perawatan Tangan dan Kaki</NavLink>
-                </DropdownItem>
+                                    </DropdownItem>
                                     </DropdownMenu>
                                 </DropdownToggle>
                             </UncontrolledDropdown>
