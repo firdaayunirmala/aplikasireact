@@ -7,9 +7,10 @@ exports.index = function (req, res) {
     response.ok("Aplikasi REST API ku berjalan!", res)
 };
 
-//menampilkan semua data mahasiswa
-exports.tampilsemuapelanggan = function (req, res) {
-    connection.query('SELECT * FROM pelanggan', function (error, rows, fileds) {
+
+//menampilkan semua data paket
+exports.tampilpaket = function (req, res) {
+    connection.query('SELECT * FROM paket', function (error, rows, fileds) {
         if (error) {
             console.log(error);
         } else {
@@ -31,14 +32,14 @@ exports.tampilberdasarkanid = function (req, res) {
         });
 };
 
-//menambahkan data mahasiswa
-exports.tambahMahasiswa = function (req, res) {
-    var nim = req.body.nim;
+//menambahkan data paket
+exports.tambahdata = function (req, res) {
     var nama = req.body.nama;
-    var jurusan = req.body.jurusan;
+    var harga = req.body.harga;
+    var gambar = req.body.gambar;
 
-    connection.query('INSERT INTO mahasiswa (nim,nama,jurusan) VALUES(?,?,?)',
-        [nim, nama, jurusan],
+    connection.query('INSERT INTO paket (nama,harga,gambar) VALUES(?,?,?)',
+        [nama, harga, gambar],
         function (error, rows, fields) {
             if (error) {
                 console.log(error);
@@ -49,13 +50,13 @@ exports.tambahMahasiswa = function (req, res) {
 };
 
 //mengubah data berdasarkan id
-exports.ubahMahasiswa = function (req, res) {
-    var id = req.body.id_mahasiswa;
-    var nim = req.body.nim;
+exports.ubahpaket = function (req, res) {
+    var id = req.body.id_paket;
     var nama = req.body.nama;
-    var jurusan = req.body.jurusan;
+    var harga = req.body.harga;
+    var gambar = req.body.gambar;
 
-    connection.query('UPDATE mahasiswa SET nim=?, nama=?, jurusan=? WHERE id_mahasiswa=?', [nim, nama, jurusan, id],
+    connection.query('UPDATE paket SET nama=?, harga=?, gambar=? WHERE id_paket=?', [nama, harga, gambar, id],
         function (error, rows, fields) {
             if (error) {
                 console.log(error);
@@ -66,9 +67,9 @@ exports.ubahMahasiswa = function (req, res) {
 }
 
 //Menghapus data berdasarkan id
-exports.hapusMahasiswa = function (req, res) {
-    var id = req.body.id_mahasiswa;
-    connection.query('DELETE FROM mahasiswa WHERE id_mahasiswa=?',[id],
+exports.hapuspaket = function (req, res) {
+    var id = req.body.id_paket;
+    connection.query('DELETE FROM paket WHERE id_paket=?', [id],
         function (error, rows, fields) {
             if (error) {
                 console.log(error);
@@ -79,12 +80,12 @@ exports.hapusMahasiswa = function (req, res) {
 }
 
 //menampilkan matakuliah group
-exports.tampilgroupmatakuliah = function(req, res){
+exports.tampilgroupmatakuliah = function (req, res) {
     connection.query('SELECT mahasiswa.id_mahasiswa, mahasiswa.nim, mahasiswa.nama, mahasiswa.jurusan, matakuliah.matakuliah, matakuliah.sks from krs JOIN matakuliah JOIN mahasiswa WHERE krs.id_matakuliah = matakuliah.id_matakuliah AND krs.id_mahasiswa = mahasiswa.id_mahasiswa ORDER BY mahasiswa.id_mahasiswa',
-        function (error, rows, fields){
-            if(error){
+        function (error, rows, fields) {
+            if (error) {
                 console.log(error);
-            }else {
+            } else {
                 response.oknested(rows, res);
             }
         }

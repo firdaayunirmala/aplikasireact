@@ -28,19 +28,7 @@ const NavbarComp = (props) => {
                         </NavItem>
 
                         <NavItem>
-                            <UncontrolledDropdown  >
-                                <DropdownToggle nav caret >
-                                    Paket Salon
-                                    <DropdownMenu >
-                                        <DropdownItem >
-                                        <NavLink to="/paketrambut" className="nav-link" >Paket Perawatan Rambut</NavLink>
-                                     </DropdownItem>
-                                        <DropdownItem>
-                                        <NavLink to="/paketkaki" className="nav-link" >Paket Perawatan Tangan dan Kaki</NavLink>
-                                    </DropdownItem>
-                                    </DropdownMenu>
-                                </DropdownToggle>
-                            </UncontrolledDropdown>
+                        <NavLink to="/paket" className="nav-link" >Perawatan Rambut</NavLink>
                         </NavItem>
 
                         <NavItem>

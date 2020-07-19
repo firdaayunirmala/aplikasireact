@@ -10,7 +10,7 @@ class ListComp extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            mahasiswa: [],
+            paket: [],
             response: '',
             display: 'none'
         }
@@ -19,15 +19,15 @@ class ListComp extends Component {
     componentDidMount() {
         axios.get(api + '/tampil').then(res => {
             this.setState({
-                mahasiswa: res.data.values
+                paket: res.data.values
             })
         })
     }
 
-    Deletemahasiswa = (idmahasiswa) => {
-        const { mahasiswa } = this.state
+    Deletepaket = (idpaket) => {
+        const { paket } = this.state
         const data = qs.stringify({
-            id_mahasiswa: idmahasiswa
+            id_paket: idpaket
         })
 
         axios.delete(api + '/hapus',
@@ -39,10 +39,10 @@ class ListComp extends Component {
             if (json.data.status === 200) {
                 this.setState({
                     response: json.data.values,
-                    mahasiswa: mahasiswa.filter(mahasiswa => mahasiswa.id_mahasiswa !== idmahasiswa),
+                    paket: paket.filter(paket => paket.id_paket !== idpaket),
                     display: 'block'
                 })
-               
+               this.props.history.push('/mahasiswa')
             }
             else {
                 this.setState({
@@ -57,45 +57,44 @@ class ListComp extends Component {
     render() {
         return (
             <Container>
-                <h2>Data Mahasiswa</h2>
+                <h2>Data Paket</h2>
                 <Alert color="succes" style={{display: this.state.display}}>
                     {this.state.response}
                 </Alert>
 
-                <NavLink href="/mahasiswa/tambah"><Button color="blue">Tambah Data</Button></NavLink>
+                <NavLink href="/paket/tambah"><Button color="blue">Tambah Data</Button></NavLink>
                 <Table className="table-bordered">
                     <thead>
                         <tr>
-                            <th>NIM</th>
                             <th>Nama</th>
-                            <th>Jurusan</th>
-                            <th>Tindakan</th>
+                            <th>Harga</th>
+                            <th>Gambar</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        {this.state.mahasiswa.map(mahasiswa =>
-                            <tr key={mahasiswa.id_mahasiswa}>
-                                <td>{mahasiswa.nim}</td>
-                                <td>{mahasiswa.nama}</td>
-                                <td>{mahasiswa.jurusan}</td>
+                        {this.state.paket.map(paket =>
+                            <tr key={paket.id_paket}>
+                                <td>{paket.nama}</td>
+                                <td>{paket.harga}</td>
+                                <td>{paket.gambar}</td>
                                 <td>
                                     <Link to={
                                         {
                                             pathname: `/mahasiswa/edit`,
                                             state: {
-                                                id_mahasiswa: mahasiswa.id_mahasiswa,
-                                                nim: mahasiswa.nim,
-                                                nama: mahasiswa.nama,
-                                                jurusan: mahasiswa.jurusan
+                                                id_paket: paket.id_paket,
+                                                nama: paket.nama,
+                                                harga: paket.harga,
+                                                gambar: paket.gambar
                                             }
                                         }
-                                    }>
-                                        <Button>Ubah</Button>
+                                    }> <Button>Ubah</Button>
                                        
                                     </Link>
                                     <span> || </span>
-                                    <Button onClick={() =>this.Deletemahasiswa(mahasiswa.id_mahasiswa)} color="danger">Hapus</Button>
+                                    <Button onClick={() =>this.Deletepaket(paket.id_paket)} color="danger">Hapus</Button>
                                 </td>
                             </tr>
                         )}

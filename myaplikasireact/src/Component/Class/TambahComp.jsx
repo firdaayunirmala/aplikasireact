@@ -24,8 +24,8 @@ class TambahComp extends Component {
  
     AddPaket = () => {
         axios.post(api+'/tambah', {
-            nama_paket: this.state.nama,
-            harga_paket: this.state.harga,
+            nama: this.state.nama,
+            harga: this.state.harga,
             gambar: this.state.gambar
 
         }).then(json => {
@@ -77,7 +77,7 @@ class TambahComp extends Component {
                         <FormGroup>
                             <Row>
                                 <Col>
-                                    <Input type="text" name="gambar" value={this.state.gambar} onChange={this.handleChange} placeholder="Masukan Gambar" />
+                                    <Input type="file" name="gambar" value={this.state.gambar} onChange={this.handleChange} placeholder="Masukan Gambar" />
                                 </Col>
                             </Row>
                         </FormGroup>
@@ -86,7 +86,7 @@ class TambahComp extends Component {
                             <Row>
                                 <Col>
                                     <Button color="info" type="button" onClick={this.AddPaket}>Simpan</Button> { }
-                                    <Link to="/useeffects" Button type="button" >Kembali</Link>
+                                    <Link to="/mahasiswa" Button type="button" >Kembali</Link>
                                 </Col>
                             </Row>
                         </FormGroup>

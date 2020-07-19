@@ -17,7 +17,7 @@ const loginuser = () => {
                                     <label>Password</label>
                                     <input type="password" className="form-control"  placeholder="Masukan Password" />
                                 </div>
-                                    <button type="submit" class="btn btn-primary btn-block">M A S U K</button> 
+                                    <Link to="/" button type="submit" class="btn btn-primary btn-block">M A S U K</Link> 
                                     <p>Belum Punya Akun? Segera Mendaftar di Bawah</p>  
 
                                     <Link to="/daftar" button type="submit" class="btn btn-primary btn-block">D A F T A R</Link> 

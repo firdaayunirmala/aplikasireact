@@ -18,7 +18,7 @@ const loginadmin = () => {
                                     <label >Password</label>
                                     <input type="password" className="form-control"  placeholder="Masukan Password" />
                                 </div>
-                                    <Link to="/useeffects"button type="submit" class="btn btn-primary btn-lg btn-block">M A S U K</Link>   
+                                    <Link to="/mahasiswa" button type="submit" class="btn btn-primary btn-lg btn-block">M A S U K</Link>   
                             </form>
                         </div>
                 </div>

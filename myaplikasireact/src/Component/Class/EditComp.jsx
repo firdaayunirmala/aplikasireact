@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import qs from 'querystring'
-//import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Container, Col, Row, Form, FormGroup, Alert, Label, Input, Button } from 'reactstrap'
-
-
 
 const api = "http://localhost:3002"
 
@@ -13,10 +11,10 @@ class EditComp extends Component {
         super(props)
 
         this.state = {
-            id_mahasiswa: this.props.location.state.id_mahasiswa,
-            nim: this.props.location.state.nim,
+            id_paket: this.props.location.state.id_paket,
             nama: this.props.location.state.nama,
-            jurusan: this.props.location.state.jurusan,
+            harga: this.props.location.state.harga,
+            gambar: this.props.location.state.gambar,
             reponse: '',
             display: 'none'
         }
@@ -26,15 +24,15 @@ class EditComp extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    ubahMahasiswa = (idmahasiswa) => {
-        const data = qs.stringify({
-            id_mahasiswa: idmahasiswa,
-            nim: this.state.nim,
+    ubahpaket = (id_paket) => {
+        const edit = qs.stringify({
+            id_paket: id_paket,
             nama: this.state.nama,
-            jurusan: this.state.jurusan
+            harga: this.state.harga,
+            gambar: this.state.gambar
         });
 
-        axios.put(api+ '/ubah', data)
+        axios.put(api+ '/ubah', edit)
             .then(json => {
                 if (json === 200) {
                     this.setState({
@@ -55,23 +53,14 @@ class EditComp extends Component {
                 render() {
                     return (
                         <Container>
-                            <h4>Formulir Edit Data</h4>
-                            <Alert color="succes" style={{ display: this.state.display }}>
+                            <h4> Edit Paket</h4>
+                            <Alert color="info" style={{ display: this.state.display }}>
                                 {this.state.response}
                             </Alert>
 
                             <Form className="from">
                                 <Col>
-                                    <Label>NIM</Label>
-                                    <FormGroup>
-                                        <Row>
-                                            <Col>
-                                                <Input type="text" name="nim" value={this.state.nim} onChange={this.handleChange} placeholder="Masukan NIM" />
-                                            </Col>
-                                        </Row>
-                                    </FormGroup>
-
-                                    <Label>NAMA</Label>
+                                    <Label>Nama</Label>
                                     <FormGroup>
                                         <Row>
                                             <Col>
@@ -80,11 +69,20 @@ class EditComp extends Component {
                                         </Row>
                                     </FormGroup>
 
-                                    <Label>JURUSAN</Label>
+                                    <Label>Harga</Label>
                                     <FormGroup>
                                         <Row>
                                             <Col>
-                                                <Input type="text" name="jurusan" value={this.state.jurusan} onChange={this.handleChange} placeholder="Masukan Jurusan" />
+                                                <Input type="text" name="harga" value={this.state.harga} onChange={this.handleChange} placeholder="Masukan Harga" />
+                                            </Col>
+                                        </Row>
+                                    </FormGroup>
+
+                                    <Label>Gambar</Label>
+                                    <FormGroup>
+                                        <Row>
+                                            <Col>
+                                                <Input type="text" name="gambar" value={this.state.gambar} onChange={this.handleChange} placeholder="Masukan Gambar" />
                                             </Col>
                                         </Row>
                                     </FormGroup>
@@ -92,7 +90,8 @@ class EditComp extends Component {
                                     <FormGroup>
                                         <Row>
                                             <Col>
-                                                <Button type="button" onClick={()=>this.ubahMahasiswa(this.state.id_mahasiswa)}>Simpan Edit</Button>
+                                                <Button type="button" onClick={()=>this.ubahpaket(this.state.id_paket)}>Simpan</Button> { }
+                                                <Link to="/mahasiswa" Button type="button" >Kembali</Link>
                                             </Col>
                                         </Row>
                                     </FormGroup>
