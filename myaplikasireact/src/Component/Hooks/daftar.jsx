@@ -33,7 +33,7 @@ const daftar = () => {
                                 
                                     <button type="submit" class="btn btn-primary  btn-block">D A F T A R</button> 
 
-                                    <Link to="/masukuser" button type="submit" class="btn btn-primary btn-block">B A T A L</Link> 
+                                    <Link to="/masukadmin" button type="submit" class="btn btn-primary btn-block">B A T A L</Link> 
 
                             </form>
                         </div>

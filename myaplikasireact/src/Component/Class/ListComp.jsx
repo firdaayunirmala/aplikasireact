@@ -42,7 +42,7 @@ class ListComp extends Component {
                     paket: paket.filter(paket => paket.id_paket !== idpaket),
                     display: 'block'
                 })
-               this.props.history.push('/mahasiswa')
+               this.props.history.push('/datapaket')
             }
             else {
                 this.setState({
@@ -82,7 +82,7 @@ class ListComp extends Component {
                                 <td>
                                     <Link to={
                                         {
-                                            pathname: `/mahasiswa/edit`,
+                                            pathname: `/datapaket/edit`,
                                             state: {
                                                 id_paket: paket.id_paket,
                                                 nama: paket.nama,
@@ -101,7 +101,7 @@ class ListComp extends Component {
                     </tbody>
                 </Table>
             </Container>
-        )
+        ) 
     }
 }
 

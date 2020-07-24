@@ -3,7 +3,7 @@ import { Container, Row, Col, CardImg, CardBody } from 'reactstrap';
 function HomePage() {
 
     return (
-        <Container>
+        <Container >
             <Row>
                 <Col sm="12" md={{ size: 'auto', offset: 4 }}><h2>SELAMAT DATANG </h2>
                     <br></br><br></br></Col>
@@ -12,7 +12,7 @@ function HomePage() {
                 <br></br><br></br>
             </Row>
 
-            <h2>GALERI </h2><br></br>
+            <Col sm="12" md={{ size: 'auto', offset: 4 }}> <h2>GALERI </h2><br></br></Col> 
             <Row>
                 <Col sm="6">
                     <CardBody>

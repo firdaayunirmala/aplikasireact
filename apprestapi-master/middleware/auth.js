@@ -10,13 +10,13 @@ var ip = require('ip');
 exports.registrasi = function(req,res) {
     var post = {
         nama: req.body.nama,
-        username: req.body.username,
+        email: req.body.email,
         password: md5(req.body.password),
         role: req.body.role,
     }
 
-    var query = "SELECT nama FROM ?? WHERE ??=?";
-    var table = ["user", "nama", post.nama];
+    var query = "SELECT email FROM ?? WHERE ??=?";
+    var table = ["user", "email", post.email];
 
     query = mysql.format(query,table);
 
@@ -45,12 +45,12 @@ exports.registrasi = function(req,res) {
 // controller untuk login
 exports.login = function(req,res){
     var post = {
-        nama: req.body.nama,
+        email: req.body.email,
         password: req.body.password
     }
 
     var query = "SELECT * FROM ?? WHERE ??=? AND ??=?";
-    var table = ["user", "nama", post.nama, "password", md5(post.password)];
+    var table = ["user", "email", post.email, "password", md5(post.password)];
 
     query = mysql.format(query,table);
     
@@ -65,6 +65,7 @@ exports.login = function(req,res){
 
                 id_user = rows[0].id;
 
+                
                 var data = {
                     id_user: id_user,
                     access_token: token,

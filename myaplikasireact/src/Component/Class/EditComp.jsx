@@ -91,7 +91,7 @@ class EditComp extends Component {
                                         <Row>
                                             <Col>
                                                 <Button type="button" onClick={()=>this.ubahpaket(this.state.id_paket)}>Simpan</Button> { }
-                                                <Link to="/mahasiswa" Button type="button" >Kembali</Link>
+                                                <Link to="/datapaket" Button type="button" >Kembali</Link>
                                             </Col>
                                         </Row>
                                     </FormGroup>

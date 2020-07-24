@@ -77,7 +77,7 @@ class TambahComp extends Component {
                         <FormGroup>
                             <Row>
                                 <Col>
-                                    <Input type="file" name="gambar" value={this.state.gambar} onChange={this.handleChange} placeholder="Masukan Gambar" />
+                                    <Input type="text" name="gambar" value={this.state.gambar} onChange={this.handleChange} placeholder="Masukan Gambar" />
                                 </Col>
                             </Row>
                         </FormGroup>
@@ -86,7 +86,7 @@ class TambahComp extends Component {
                             <Row>
                                 <Col>
                                     <Button color="info" type="button" onClick={this.AddPaket}>Simpan</Button> { }
-                                    <Link to="/mahasiswa" Button type="button" >Kembali</Link>
+                                    <Link to="/datapaket" Button type="button" >Kembali</Link>
                                 </Col>
                             </Row>
                         </FormGroup>

@@ -1,25 +1,15 @@
-import React, { useState } from 'react';
-import {
-    Collapse, Navbar, NavbarToggler, Nav, NavItem, UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem
-} from 'reactstrap';
+import React, {useState} from 'react';
+import {Collapse, Navbar, NavbarToggler, Nav, NavItem} from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-//import { CartContext } from '../../CartContext';
 
-
-const NavbarComp = (props) => {
+  function NavbarComp () {
     const [isOpen, setIsOpen] = useState(false);
-
     const toggle = () => setIsOpen(!isOpen);
 
-    // const { value } = useContext(CartContext)
 
     return (
         <div>
             <Navbar color="light" light expand="md">
-
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
@@ -34,26 +24,17 @@ const NavbarComp = (props) => {
                         <NavItem>
                             <NavLink to="/tentang" className="nav-link" >Tentang Kami</NavLink>
                         </NavItem>
+
+                        <NavItem>
+                            <NavLink to="/datapaket" className="nav-link" >CRUD Admin</NavLink>
+                        </NavItem>
+
+                        <NavItem>
+                            <NavLink to="/masukadmin" className="nav-link" >Login</NavLink>
+                        </NavItem>
                     </Nav>
-                    <span class="navbar-text mr-3">
-                        Silahkan Masuk Sebagai
-</span>
-                    <UncontrolledDropdown >
 
-                        <DropdownToggle nav caret>
-                            Masuk
-              </DropdownToggle>
-                        <DropdownMenu right>
-                            <DropdownItem>
-                            <NavLink to="/masukuser" className="nav-link" >Pelanggan</NavLink>
-                            
-                </DropdownItem>
-                            <DropdownItem>
-                            <NavLink to="/masukadmin" className="nav-link" >Admin</NavLink>
-                </DropdownItem>
-
-                        </DropdownMenu>
-                    </UncontrolledDropdown>
+                
                 </Collapse>
             </Navbar>
         </div>

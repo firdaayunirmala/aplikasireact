@@ -11,7 +11,7 @@ function CardComp(props) {
         <CardImg top width="5%" src="http://placeimg.com/640/480/arch" alt="Card image cap" />
         <Col sm="12" md={{ size: 6, offset: 3 }}>
           <h3>Catok Lurus</h3>
-          <h4 >Rp. 50.000 </h4>
+          <h4 >Rp. 100.000 </h4>
           <Button>Pesan Sekarang</Button>
           </Col>
         </CardBody>
@@ -21,8 +21,8 @@ function CardComp(props) {
         <CardBody>
         <CardImg top width="5%" src="http://placeimg.com/640/480/arch" alt="Card image cap" />
         <Col sm="12" md={{ size: 6, offset: 3 }}>
-          <h3>Catok Lurus</h3>
-          <h4 >Rp. 50.000 </h4>
+          <h3>Hair Cut</h3>
+          <h4 >Rp. 20.000 </h4>
           <Button>Pesan Sekarang</Button>
           </Col>
         </CardBody>
